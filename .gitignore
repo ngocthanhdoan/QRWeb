@@ -1,0 +1,42 @@
+# Tệp và thư mục liên quan đến IDE
+.classpath
+.project
+.settings/
+
+# Thư mục mục tiêu Maven
+target/
+
+# Tệp nhật ký
+*.log
+
+# Các tệp tạm thời, sao lưu
+*.tmp
+*.bak
+*.swp
+
+# Các tệp biên dịch từ Maven hoặc IDE
+*.class
+
+# Thư mục của IDE
+.idea/
+*.iml
+
+# Tệp cấu hình hệ thống xây dựng cụ thể
+# maven và gradle
+# nếu bạn sử dụng gradle thì thêm vào .gradle
+mvnw
+mvnw.cmd
+.gradle/
+build/
+
+# Tệp hình ảnh nếu không cần thiết đưa lên
+*.png
+*.jpg
+
+# Node.js nếu sử dụng với front-end
+node_modules/
+dist/
+
+# Các tệp hệ điều hành
+.DS_Store
+Thumbs.db
