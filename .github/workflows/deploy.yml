@@ -1,4 +1,4 @@
-name: Deploy DevhubApiWeb with Docker to Ubuntu Server
+name: Deploy WebQRCode with Docker to Ubuntu Server
 
 on:
   push:
