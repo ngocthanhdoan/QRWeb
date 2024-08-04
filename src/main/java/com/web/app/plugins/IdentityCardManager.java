@@ -29,12 +29,23 @@ public class IdentityCardManager {
 	public Collection<IdentityCard> getAllCards() {
 		return cardDatabase.values();
 	}
+
+	public IdentityCard getIdentityCard(String idIdentityCard) {
+		for (String key : cardDatabase.keySet()) {
+			IdentityCard card = cardDatabase.get(key);
+			if (card.getIdIdentityCard().equals(idIdentityCard)) {
+				return card;
+			}
+		}
+		return null;
+	}
+
 	public void saveImage(String idPassport, BufferedImage image) {
-        try {
-            File outputFile = new File("images/" + idPassport + ".png");
-            ImageIO.write(image, "png", outputFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+		try {
+			File outputFile = new File("images/" + idPassport + ".png");
+			ImageIO.write(image, "png", outputFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

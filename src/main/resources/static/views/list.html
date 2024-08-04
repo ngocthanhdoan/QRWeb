@@ -16,7 +16,7 @@
         }
 </style>
 <div class="container-fluid">
-    <h2 id="pageTitle" class="text-center">Danh sách thông tin đã được tải lên</h2>
+    <h1 id="pageTitle" class="text-center">Danh sách thông tin đã được tải lên</h1>
     <div ng-if="notification" class="alert alert-info">{{ notification }}</div>
     <div class="highlight">
         <table class="table table-bordered" ng-if="cards.length > 0">
@@ -42,7 +42,7 @@
                     <td>{{ card.gender }}</td>
                     <td>{{ card.address }}</td>
                     <td>{{ card.issueDate }}</td>
-                    <td>  <a href="http://localhost:8080/api/card-image/{{ card.idPassport }}" target="_blank" rel="noopener noreferrer"><img ng-src="http://localhost:8080/api/card-image/{{ card.idPassport }}" alt="{{ card.idPassport }}"/></a></td>
+                    <td>  <a href="/api/card-image/{{ card.idPassport }}" target="_blank" rel="noopener noreferrer"><img ng-src="/api/card-image/{{ card.idPassport }}" alt="{{ card.idPassport }}"/></a></td>
                     <td>     <button class="btn btn-danger" ng-click="remove(card.idPassport)">Xóa</button></td>
                 </tr>
             </tbody>

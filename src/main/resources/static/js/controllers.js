@@ -86,13 +86,39 @@ angular.module('dashboardApp')
                 });
         };
     }])
-    .controller('CheckController', ['$scope', function ($scope) {
-        $scope.message = 'Check the information of your identity card.';
+    .controller('CheckController',['$scope', '$http', function ($scope, $http){
+        //$scope.data = null;
+        $scope.searched = false;
+
+        $scope.lookup = function() {
+            $scope.searched = true;
+            $scope.data = null;
+
+            const idInput = $scope.idInput;
+            const identityUrl = `/api/card-info-identity/${idInput}`;
+            const passportUrl = `/api/card-info-passport/${idInput}`;
+
+            // Attempt to fetch identity card data
+            $http.get(identityUrl)
+            .then(function(response) {
+                $scope.data = response.data;
+            })
+            .catch(function() {
+                // If identity card data not found, attempt to fetch passport data
+                $http.get(passportUrl)
+                .then(function(response) {
+                    $scope.data = response.data;
+                })
+                .catch(function() {
+                    
+                });
+            });
+        };
     }])
     .controller('ListController', ['$scope', '$http', function ($scope, $http) {
         $scope.cards = [];
         $scope.notification = '';
-    
+
         // Hàm để tải danh sách thẻ từ server
         function loadCards() {
             $http.get('/api/cards')
@@ -108,17 +134,17 @@ angular.module('dashboardApp')
                     $scope.notification = 'Đã xảy ra lỗi khi tải dữ liệu: ' + error.message;
                 });
         }
-    
+
         // Gọi hàm loadCards khi controller khởi tạo
         loadCards();
-    
+
         // Hàm để xóa thẻ
         $scope.remove = function (idPassport) {
             $http.post('/api/delete-card/' + idPassport)
                 .then(function (response) {
                     $scope.notification = 'Thẻ đã được xóa thành công.';
                     console.log('Card deleted successfully:', response.data);
-    
+
                     // Tải lại danh sách thẻ sau khi xóa thành công
                     loadCards();
                 })
@@ -127,4 +153,90 @@ angular.module('dashboardApp')
                     console.error('Error deleting card:', error);
                 });
         };
-    }]);
+    }])
+    .controller('DockerController', ['$scope', '$http', function ($scope, $http) {
+        $scope.username = sessionStorage.getItem('username') || '';
+        $scope.password = sessionStorage.getItem('password') || '';
+        $scope.token = sessionStorage.getItem('token') || '';
+        $scope.repositories = [];
+        $scope.repositoryDetails = null;
+        $scope.errorMessage = '';
+
+        $scope.login = function() {
+            const loginData = {
+                username: $scope.username,
+                password: $scope.password
+            };
+
+            $http.post('/api/loginDocker', loginData)
+            .then(function(response) {
+                $scope.token = response.data.token;
+                $scope.username = response.data.username;
+                $scope.password = response.data.password;
+                sessionStorage.setItem('token', $scope.token);
+                sessionStorage.setItem('username', $scope.username);
+                sessionStorage.setItem('password', $scope.password);
+                $scope.errorMessage = '';
+            })
+            .catch(function(error) {
+                $scope.errorMessage = 'Login failed!';
+                console.error(error);
+            });
+        };
+
+        $scope.getRepositories = function() {
+            const authData = {
+                username: sessionStorage.getItem('username'),
+                password: sessionStorage.getItem('password')
+            };
+
+            $http.post('/api/getRepositories', authData)
+            .then(function(response) {
+                console.log(response);
+                $scope.repositories = response.data;
+                $scope.errorMessage = '';
+            })
+            .catch(function(error) {
+                $scope.errorMessage = 'Failed to get repositories!';
+                console.error(error);
+            });
+        };
+
+        $scope.getRepositoryDetails = function(repositoryName) {
+            const authData = {
+                username: sessionStorage.getItem('username'),
+                password: sessionStorage.getItem('password')
+            };
+
+            $http.post('/api/getRepositoryDetails/' + repositoryName, authData)
+            .then(function(response) {
+                $scope.repositoryDetails = response.data.data;
+                $scope.errorMessage = '';
+            })
+            .catch(function(error) {
+                $scope.errorMessage = 'Failed to get repository details!';
+                console.error(error);
+            });
+        };
+    }])
+    .controller('LogController', ['$scope', '$http', function($scope, $http) {
+        $scope.logs = '';
+        $scope.errorMessage = '';
+
+        $scope.fetchLogs = function() {
+            $http.get('/api/logs')
+                .then(function(response) {
+                    console.log(response);
+                    $scope.logs =response;
+                    $scope.errorMessage = '';
+                }, function(error) {
+                    $scope.errorMessage = 'Failed to fetch logs: ' + error;
+                });
+        };
+
+        function formatLogs(logs) {
+            // Format logs as needed, e.g., split by lines, parse JSON if applicable
+            return logs;
+        }
+    }])
+    ;

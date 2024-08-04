@@ -25,6 +25,14 @@ angular.module('dashboardApp', ['ngRoute'])
                 templateUrl: 'views/doc.html',
                 controller: 'ListController'
             })
+            .when('/docker', {
+                templateUrl: 'views/docker.html',
+                controller: 'DockerController'
+            })
+            .when('/logs', {
+                templateUrl: 'views/logs.html',
+                controller: 'LogController'
+            })
             .otherwise({
                 redirectTo: '/'
             });

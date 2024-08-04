@@ -1,0 +1,74 @@
+<style>
+    .card-id {
+        width: 500px;
+        margin: 20px auto;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+    }
+
+    .card-id img {
+        width: 120px;
+        height: auto;
+        border-radius: 10px;
+        margin-right: 20px;
+    }
+
+    .card-id .info {
+        flex-grow: 1;
+    }
+
+    .card-id h4 {
+        margin-bottom: 10px;
+    }
+
+    body {
+        padding-top: 20px;
+    }
+
+    .highlight h4 {
+        margin-top: 20px;
+    }
+
+    .highlight p {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="container">
+    <h1 class="text-center"> Tra tìm thông tin cmnd/cccd</h1>
+
+
+    <form ng-submit="lookup()" class="highlight">
+        <div class="form-group">
+            <label for="idInput">Enter Identity Card or Passport Number:</label>
+            <input type="text" class="form-control" ng-model="idInput" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Lookup</button>
+    </form>
+    <div id="result" class="mt-5">
+        <div ng-if="data" class="highlight">
+            <div class="card-id">
+                <img ng-src="/api/card-image/{{ data.id_passport }}" alt="{{ data.fullname }}" />
+
+                <div class="info">
+                    <h4>Identity Information</h4>
+                    <p><strong>ID Identity Card:</strong> {{data.id_identity_card}}</p>
+                    <p><strong>ID Passport:</strong> {{data.id_passport}}</p>
+                    <p><strong>Full Name:</strong> {{data.fullname}}</p>
+                    <p><strong>Birth Date:</strong> {{data.birth_date}}</p>
+                    <p><strong>Gender:</strong> {{data.gender}}</p>
+                    <p><strong>Address:</strong> {{data.address}}</p>
+                    <p><strong>Issue Date:</strong> {{data.issue_date}}</p>
+                </div>
+            </div>
+        </div>
+        <div ng-if="!data && searched">
+            <div class="alert alert-danger">No data found for the entered ID.</div>
+        </div>
+    </div>
+
+
+</div>
