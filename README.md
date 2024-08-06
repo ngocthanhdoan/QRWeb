@@ -115,5 +115,9 @@ Mặc dù không cần Docker Compose cho tệp hành động hiện tại, bạ
 ## Kết Luận
 
 Sau khi hoàn thành các bước trên, máy chủ Ubuntu của bạn sẽ sẵn sàng để nhận triển khai Docker từ GitHub Actions. Bạn có thể kiểm tra và đảm bảo rằng mọi thứ hoạt động như mong đợi trước khi thực hiện triển khai chính thức.
+![image](https://github.com/user-attachments/assets/2269b44f-97e5-4ade-84cd-d1893e4eee0d)
+![image](https://github.com/user-attachments/assets/4b6be472-fc28-4b2e-a804-09aa751babc4)
+
+
 
 
