@@ -10,5 +10,5 @@ RUN mvn clean install
 FROM eclipse-temurin:21
 WORKDIR /app
 COPY  --from=build /app/target/QRWeb-0.0.1.jar qr-web-app.jar
-EXPOSE 8082
+EXPOSE 8080
 CMD ["java", "-jar", "qr-web-app.jar"]
