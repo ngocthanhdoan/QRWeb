@@ -5,26 +5,26 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
+
 import org.json.JSONObject;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.manager.web.app.analyzer.MetricsAnalyzer;
+import com.manager.web.app.plugins.returnObject;
 import com.web.app.plugins.IdentityCardManager;
 import com.web.app.qr.a0.modun.QRA0_0100_mod;
-import com.web.app.qr.a0.modun.QRA0_0101_mod;
 import com.web.app.qr.a0.vo.IdentityCard;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -32,14 +32,23 @@ import jakarta.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/api")
 public class QRA0_0100 {
+	public QRA0_0100() {
+		// TODO Auto-generated constructor stub
+		responseObject = new returnObject();
+		responseObject.setReturnCode(0);
+		responseObject.setMsgDescs("Success");
+	}
+
 	private QRA0_0100_mod qrProcessor = new QRA0_0100_mod();
 	private IdentityCardManager cardManager = new IdentityCardManager();
+	@Autowired
+	private com.web.app.config.MetricsLogger metricsLogger;
 
 	@PostMapping("/process-upload")
 	@ResponseBody
 	public String processUpload(@RequestParam("file") MultipartFile file) {
 		JSONObject response = new JSONObject();
-
+		long startTime = System.currentTimeMillis();
 		try {
 			BufferedImage image = ImageIO.read(file.getInputStream());
 			String result = qrProcessor.detectQrCode(image);
@@ -58,10 +67,14 @@ public class QRA0_0100 {
 			} else {
 				response.put("update_required", false); // Indicate that no update is required
 			}
+			metricsLogger.logHttpMetrics("/api/process-upload", "POST", "200", System.currentTimeMillis() - startTime,
+					true);
 
 		} catch (IOException e) {
 			response.put("status", "error");
 			response.put("message", "Failed to process image: " + e.getMessage());
+			metricsLogger.logHttpMetrics("/api/process-upload", "POST", "500", System.currentTimeMillis() - startTime,
+					false);
 		}
 
 		return response.toString();
@@ -71,22 +84,25 @@ public class QRA0_0100 {
 	@ResponseBody
 	public String updateCard(@RequestBody JSONObject updateRequest) {
 		JSONObject response = new JSONObject();
+		long startTime = System.currentTimeMillis();
 
 		try {
 			String idPassport = updateRequest.getString("id_passport");
 			IdentityCard newCard = new IdentityCard(updateRequest.getString("id_identity_card"), idPassport,
 					updateRequest.getString("fullname"), updateRequest.getString("birth_date"),
 					updateRequest.getString("gender"), updateRequest.getString("address"),
-					updateRequest.getString("issue_date") // Image handling not covered here
-			);
+					updateRequest.getString("issue_date"));
 
 			cardManager.addOrUpdateCard(newCard);
 			response.put("status", "success");
 			response.put("message", "Identity card updated successfully.");
-
+			metricsLogger.logHttpMetrics("/api/update-card", "POST", "200", System.currentTimeMillis() - startTime,
+					true);
 		} catch (Exception e) {
 			response.put("status", "error");
 			response.put("message", "Failed to update card: " + e.getMessage());
+			metricsLogger.logHttpMetrics("/api/update-card", "POST", "500", System.currentTimeMillis() - startTime,
+					false);
 		}
 
 		return response.toString();
@@ -95,6 +111,8 @@ public class QRA0_0100 {
 	@GetMapping("/cards")
 	@ResponseBody
 	public Collection<IdentityCard> getAllCards() {
+		long startTime = System.currentTimeMillis();
+		metricsLogger.logHttpMetrics("/api/card-image", "GET", "200", System.currentTimeMillis() - startTime, true);
 		return cardManager.getAllCards();
 	}
 
@@ -102,12 +120,11 @@ public class QRA0_0100 {
 	@ResponseBody
 	public String addCard(@RequestBody String cardData) {
 		JSONObject response = new JSONObject();
-		try {
-			// Parse the input string as JSON
-			JSONObject cardDataJson = new JSONObject(cardData);
+		long startTime = System.currentTimeMillis();
 
-			// Extract parameters from JSON
-			String idIdentityCard = cardDataJson.optString("id_identity_card"); // Default value if not found
+		try {
+			JSONObject cardDataJson = new JSONObject(cardData);
+			String idIdentityCard = cardDataJson.optString("id_identity_card");
 			String idPassport = cardDataJson.optString("id_passport");
 			String fullname = cardDataJson.optString("fullname");
 			String birthDate = cardDataJson.optString("birth_date");
@@ -115,20 +132,17 @@ public class QRA0_0100 {
 			String address = cardDataJson.optString("address");
 			String issueDate = cardDataJson.optString("issue_date");
 
-			// Create IdentityCard object
 			IdentityCard newCard = new IdentityCard(idIdentityCard, idPassport, fullname, birthDate, gender, address,
-					issueDate
-
-			);
-			System.out.println(newCard.toJson().toString());
-			// Add or update card information
+					issueDate);
 			cardManager.addOrUpdateCard(newCard);
 
 			response.put("status", "success");
 			response.put("message", "Identity card added or updated successfully.");
+			metricsLogger.logHttpMetrics("/api/add-card", "POST", "200", System.currentTimeMillis() - startTime, true);
 		} catch (Exception e) {
 			response.put("status", "error");
 			response.put("message", "Failed to add or update card: " + e.getMessage());
+			metricsLogger.logHttpMetrics("/api/add-card", "POST", "500", System.currentTimeMillis() - startTime, false);
 		}
 
 		return response.toString();
@@ -138,27 +152,34 @@ public class QRA0_0100 {
 	@ResponseBody
 	public String deleteCard(@PathVariable("idPassport") String idPassport) {
 		JSONObject response = new JSONObject();
+		long startTime = System.currentTimeMillis();
 
 		try {
-			// Xóa thông tin căn cước dựa trên ID
 			IdentityCard existingCard = cardManager.getCard(idPassport);
 			if (existingCard != null) {
 				cardManager.removeCard(idPassport);
 				response.put("status", "success");
 				response.put("message", "Identity card deleted successfully.");
+				metricsLogger.logHttpMetrics("/api/delete-card", "POST", "200", System.currentTimeMillis() - startTime,
+						true);
 			} else {
 				response.put("status", "error");
 				response.put("message", "Identity card not found.");
+				metricsLogger.logHttpMetrics("/api/delete-card", "POST", "404", System.currentTimeMillis() - startTime,
+						false);
 			}
 		} catch (Exception e) {
 			response.put("status", "error");
 			response.put("message", "Failed to delete card: " + e.getMessage());
+			metricsLogger.logHttpMetrics("/api/delete-card", "POST", "500", System.currentTimeMillis() - startTime,
+					false);
 		}
 		return response.toString();
 	}
 
 	@GetMapping("/card-image/{idPassport}")
 	public void getCardImage(@PathVariable("idPassport") String idPassport, HttpServletResponse response) {
+		long startTime = System.currentTimeMillis();
 		try {
 			// Giả sử hình ảnh được lưu trữ với tên tệp là ID của căn cước công dân
 			File imageFile = new File("images/" + idPassport + ".png");
@@ -174,17 +195,26 @@ public class QRA0_0100 {
 				}
 				inputStream.close();
 				outputStream.close();
+				metricsLogger.logHttpMetrics("/api/card-image", "GET", "200", System.currentTimeMillis() - startTime,
+						true);
 			} else {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 				response.getWriter().write("Image not found");
+				metricsLogger.logHttpMetrics("/api/card-image", "GET", "500", System.currentTimeMillis() - startTime,
+						false);
 			}
 		} catch (IOException e) {
 			try {
 				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				response.getWriter().write("Failed to retrieve image: " + e.getMessage());
 			} catch (IOException ex) {
+				metricsLogger.logHttpMetrics("/api/card-image", "GET", "500", System.currentTimeMillis() - startTime,
+						false);
 				ex.printStackTrace();
 			}
+			metricsLogger.logHttpMetrics("/api/card-image", "GET", "500", System.currentTimeMillis() - startTime,
+					false);
+
 		}
 	}
 
@@ -198,66 +228,20 @@ public class QRA0_0100 {
 		return cardManager.getIdentityCard(idIdentityCard).toJson().toString();
 	}
 
-	@PostMapping("/loginDocker")
-	@ResponseBody
-	public String loginDocker(@RequestBody String data) {
-		JSONObject response = new JSONObject();
-		QRA0_0101_mod docker = null;
-		try {
-			// Parse the input string as JSON
-			JSONObject cardDataJson = new JSONObject(data);
-
-			// Extract parameters from JSON
-			String username = cardDataJson.optString("username"); // Default value if not found
-			String password = cardDataJson.optString("password");
-
-			docker = new QRA0_0101_mod(username, password);
-			response.append("username", username);
-			response.append("password", password);
-			response.append("token", docker.getToken());
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return response.toString();
-	}
-
-	@PostMapping("/getRepositories")
-	@ResponseBody
-	public String getResonsite(@RequestBody String data) {
-		QRA0_0101_mod docker = null;
-		try {
-			JSONObject cardDataJson = new JSONObject(data);
-			String username = cardDataJson.optString("username"); // Default value if not found
-			String password = cardDataJson.optString("password");
-			docker = new QRA0_0101_mod(username, password);
-			return docker.getRepositories();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@GetMapping("/getRepositoryDetails/{repositoryName}")
-	@ResponseBody
-	public String getResonsite(@RequestBody String data, @PathVariable("repositoryName") String repositoryName) {
-		JSONObject response = new JSONObject();
-		QRA0_0101_mod docker = null;
-		try {
-			JSONObject cardDataJson = new JSONObject(data);
-			String username = cardDataJson.optString("username"); // Default value if not found
-			String password = cardDataJson.optString("password");
-			docker = new QRA0_0101_mod(username, password);
-			docker.login();
-			response.append("data", docker.getRepositoryDetails(repositoryName));
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return response.toString();
-	}
+	private returnObject responseObject;
 
 	@GetMapping("/logs")
-	public String getLogs() {
-		return "{\"error\": \"Failed to read log file}";
+	@ResponseBody
+	public returnObject getSummary() {
+		long startTime = System.currentTimeMillis();
+		try {
+			MetricsAnalyzer analyzer = new MetricsAnalyzer();
+			responseObject.setReturnData(analyzer.getSummary());
+			return responseObject;
+		} catch (Exception e) {
+			// logger.error("Error handling request to /api/endpoint", e);
+			responseObject.setReturnCode(-1);
+			return responseObject;
+		}
 	}
 }
