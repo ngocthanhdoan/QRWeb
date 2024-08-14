@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MetricsAnalyzer {
 
-	private static final String PROMETHEUS_ENDPOINT = "http://localhost:8080/actuator/prometheus";
+	private static final String PROMETHEUS_ENDPOINT = "http://localhost:8082/actuator/prometheus";
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 
