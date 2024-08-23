@@ -141,44 +141,6 @@
 			<artifactId>logstash-logback-encoder</artifactId>
 			<version>6.6</version>
 		</dependency>
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-prometheus</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.5.13</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.sun.media/jai_imageio -->
-		<dependency>
-			<groupId>com.github.jai-imageio</groupId>
-			<artifactId>jai-imageio-core</artifactId>
-			<version>1.4.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.groupdocs</groupId>
-			<artifactId>groupdocs-parser</artifactId>
-			   <version>23.11</version> 
-			<scope>system</scope>
-			<systemPath>
-				${project.basedir}/lib/groupdocs-parser-23.11.jar
-			</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>pdfbox</artifactId>
-			<version>3.0.0</version>
-		</dependency>
 
 	</dependencies>
 

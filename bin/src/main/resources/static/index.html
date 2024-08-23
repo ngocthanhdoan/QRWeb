@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dashboardApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="/js/app.module.js"></script>
+    <script src="/js/controllers.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid" ng-controller="MainController">
+        <div class="sidebar">
+            <h4 class="text-center">Tác Vụ</h4>
+            <a href="#!/">Hướng dẫn sử dụng</a>
+            <a href="#!/handleUpload">Nhập tay thông tin chứng minh nhân dân</a>
+            <a href="#!/upload">Tải lên căn cước công dân</a>
+            <a href="#!/check">Tra tìm thông tin cmnd/cccd</a>
+            <a href="#!/list">Danh sách thông tin đã được tải lên</a>
+			<a href="#!/document">API document</a>
+			<h4 class="text-center">Config</h4>
+			<a href="#!/docker">Docker Manager</a>
+            <a href="#!/docker">Cache Image</a>
+            <a href="#!/logs">Api Log</a>
+        </div>
+        <div class="content">
+          
+            <div id="mainContent" ng-view></div>
+        </div>
+    </div>
+</body>
+
+</html>
