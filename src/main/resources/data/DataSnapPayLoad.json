@@ -1,1 +1,170 @@
-[{"id":"4b47eef4-2769-45ec-b4c7-8ca05f3266df","key":"ID_CARD","value":"Chứng minh nhân dân","desc":"Chứng minh nhân dân","prefix":"DOCUMENT_TYPE"},{"id":"7d74f10a-434b-460c-8a40-29e8f04ac500","key":"PASSPORT","value":"Hộ chiếu","desc":"Hộ chiếu","prefix":"DOCUMENT_TYPE"},{"id":"fe16f28c-0405-464f-b8f4-e4f436454935","key":"MALE","value":"Nam","desc":"Nam","prefix":"GENDER"},{"id":"cb03bc33-792a-475d-864f-62734e455182","key":"FEMALE","value":"Nữ","desc":"Nữ","prefix":"GENDER"},{"id":"9928dad3-1bc8-488e-8eea-31f514a2694f","key":"VN","value":"Việt Nam","desc":"Việt Nam","prefix":"NATIONALITY"},{"id":"3002091a-9c96-42bd-a41c-0c28d7de3ab5","key":"US","value":"Mỹ","desc":"Mỹ","prefix":"NATIONALITY"},{"id":"b1a92015-0c75-4536-a1e3-5c99360b8ad2","key":"HIGH_SCHOOL","value":"Cấp 3","desc":"Cấp 3","prefix":"EDUCATION"},{"id":"2ba7c3ee-6c60-4034-9939-0409bc3101e3","key":"BACHELOR","value":"Đại học","desc":"Đại học","prefix":"EDUCATION"},{"id":"ecc035cd-9838-4948-9bd6-4e1a1d1c3156","key":"MASTER","value":"Thạc sĩ","desc":"Thạc sĩ","prefix":"EDUCATION"},{"id":"85ca9f33-7082-44d8-b8b5-ae1232da0fb3","key":"PHD","value":"Tiến sĩ","desc":"Tiến sĩ","prefix":"EDUCATION"},{"id":"b3dc1783-10cd-49f5-9dcd-836f416c63a8","key":"SINGLE","value":"Độc thân","desc":"Độc thân","prefix":"MARITAL_STATUS"},{"id":"76f9cb4e-b47f-4183-bdbf-1a8971938d8c","key":"MARRIED","value":"Kết hôn","desc":"Kết hôn","prefix":"MARITAL_STATUS"},{"id":"e4dfcebd-3ca7-4a7d-815f-c41c8c6ef345","key":"ENGINEER","value":"Kỹ sư","desc":"Kỹ sư","prefix":"PROFESSION"},{"id":"c5262522-0cae-4fb1-9429-f5ff80b3c9bb","key":"DOCTOR","value":"Bác sĩ","desc":"Bác sĩ","prefix":"PROFESSION"},{"id":"69cd4866-e95c-42f8-9cb9-50681b8dfed5","key":"IT","value":"Công nghệ thông tin","desc":"Công nghệ thông tin","prefix":"MAJOR_CATEGORY"},{"id":"00e51c2d-0117-4b94-9a2d-43b6b64fd963","key":"ECONOMICS","value":"Kinh tế","desc":"Kinh tế","prefix":"MAJOR_CATEGORY"},{"id":"a8b824e8-9fec-4dff-a721-2f0c5299edb0","key":"SOFTWARE","value":"Phần mềm","desc":"Phần mềm","prefix":"MEDIUM_CATEGORY"},{"id":"968532fd-4573-42df-a192-fcf510deed27","key":"HARDWARE","value":"Phần cứng","desc":"Phần cứng","prefix":"MEDIUM_CATEGORY"},{"id":"1d19bb3b-a678-41cb-b3ab-ecb8f7d6f00b","key":"DEVELOPER","value":"Lập trình viên","desc":"Lập trình viên","prefix":"MINOR_CATEGORY"},{"id":"147ad213-cafb-42ee-be97-89838cecf614","key":"PROJECT_MANAGER","value":"Quản lý dự án","desc":"Quản lý dự án","prefix":"MINOR_CATEGORY"},{"id":"315f68ea-3507-4b9c-afcb-8955076dc558","key":"type1","value":"Nghề nghiệp loại 1","desc":"Nghề nghiệp loại 1","prefix":"JOBS_TYPE"},{"id":"21df89d7-ab04-4389-beeb-0a72d6f1e067","key":"type2","value":"Nghề nghiệp loại 2","desc":"Nghề nghiệp loại 2","prefix":"JOBS_TYPE"},{"id":"e1cab0ae-2bca-49a1-b1c7-897d12c34130","key":"type3","value":"Nghề nghiệp loại 3","desc":"Nghề nghiệp loại 3","prefix":"JOBS_TYPE"},{"id":"f655631b-f8a3-4cd0-850e-d46a18698d48","key":"type4","value":"Nghề nghiệp loại 4","desc":"Nghề nghiệp loại 4","prefix":"JOBS_TYPE"}]
+[
+  {
+    "id": "4b47eef4-2769-45ec-b4c7-8ca05f3266df",
+    "key": "ID_CARD_0",
+    "value": "Chứng minh nhân dân",
+    "desc": "Chứng minh nhân dân",
+    "prefix": "DOCUMENT_TYPE"
+  },
+  {
+    "id": "7d74f10a-434b-460c-8a40-29e8f04ac500",
+    "key": "ID_CARD_1",
+    "value": "Căn cước công dân",
+    "desc": "Căn cước công dân",
+    "prefix": "DOCUMENT_TYPE"
+  },
+  {
+    "id": "fe16f28c-0405-464f-b8f4-e4f436454935",
+    "key": "MALE",
+    "value": "Nam",
+    "desc": "Nam",
+    "prefix": "GENDER"
+  },
+  {
+    "id": "cb03bc33-792a-475d-864f-62734e455182",
+    "key": "FEMALE",
+    "value": "Nữ",
+    "desc": "Nữ",
+    "prefix": "GENDER"
+  },
+  {
+    "id": "9928dad3-1bc8-488e-8eea-31f514a2694f",
+    "key": "VN",
+    "value": "Việt Nam",
+    "desc": "Việt Nam",
+    "prefix": "NATIONALITY"
+  },
+  {
+    "id": "3002091a-9c96-42bd-a41c-0c28d7de3ab5",
+    "key": "US",
+    "value": "Mỹ",
+    "desc": "Mỹ",
+    "prefix": "NATIONALITY"
+  },
+  {
+    "id": "b1a92015-0c75-4536-a1e3-5c99360b8ad2",
+    "key": "HIGH_SCHOOL",
+    "value": "Cấp 3",
+    "desc": "Cấp 3",
+    "prefix": "EDUCATION"
+  },
+  {
+    "id": "2ba7c3ee-6c60-4034-9939-0409bc3101e3",
+    "key": "BACHELOR",
+    "value": "Đại học",
+    "desc": "Đại học",
+    "prefix": "EDUCATION"
+  },
+  {
+    "id": "ecc035cd-9838-4948-9bd6-4e1a1d1c3156",
+    "key": "MASTER",
+    "value": "Thạc sĩ",
+    "desc": "Thạc sĩ",
+    "prefix": "EDUCATION"
+  },
+  {
+    "id": "85ca9f33-7082-44d8-b8b5-ae1232da0fb3",
+    "key": "PHD",
+    "value": "Tiến sĩ",
+    "desc": "Tiến sĩ",
+    "prefix": "EDUCATION"
+  },
+  {
+    "id": "b3dc1783-10cd-49f5-9dcd-836f416c63a8",
+    "key": "SINGLE",
+    "value": "Độc thân",
+    "desc": "Độc thân",
+    "prefix": "MARITAL_STATUS"
+  },
+  {
+    "id": "76f9cb4e-b47f-4183-bdbf-1a8971938d8c",
+    "key": "MARRIED",
+    "value": "Kết hôn",
+    "desc": "Kết hôn",
+    "prefix": "MARITAL_STATUS"
+  },
+  {
+    "id": "e4dfcebd-3ca7-4a7d-815f-c41c8c6ef345",
+    "key": "ENGINEER",
+    "value": "Kỹ sư",
+    "desc": "Kỹ sư",
+    "prefix": "PROFESSION"
+  },
+  {
+    "id": "c5262522-0cae-4fb1-9429-f5ff80b3c9bb",
+    "key": "DOCTOR",
+    "value": "Bác sĩ",
+    "desc": "Bác sĩ",
+    "prefix": "PROFESSION"
+  },
+  {
+    "id": "69cd4866-e95c-42f8-9cb9-50681b8dfed5",
+    "key": "IT",
+    "value": "Công nghệ thông tin",
+    "desc": "Công nghệ thông tin",
+    "prefix": "MAJOR_CATEGORY"
+  },
+  {
+    "id": "00e51c2d-0117-4b94-9a2d-43b6b64fd963",
+    "key": "ECONOMICS",
+    "value": "Kinh tế",
+    "desc": "Kinh tế",
+    "prefix": "MAJOR_CATEGORY"
+  },
+  {
+    "id": "a8b824e8-9fec-4dff-a721-2f0c5299edb0",
+    "key": "SOFTWARE",
+    "value": "Phần mềm",
+    "desc": "Phần mềm",
+    "prefix": "MEDIUM_CATEGORY"
+  },
+  {
+    "id": "968532fd-4573-42df-a192-fcf510deed27",
+    "key": "HARDWARE",
+    "value": "Phần cứng",
+    "desc": "Phần cứng",
+    "prefix": "MEDIUM_CATEGORY"
+  },
+  {
+    "id": "1d19bb3b-a678-41cb-b3ab-ecb8f7d6f00b",
+    "key": "DEVELOPER",
+    "value": "Lập trình viên",
+    "desc": "Lập trình viên",
+    "prefix": "MINOR_CATEGORY"
+  },
+  {
+    "id": "147ad213-cafb-42ee-be97-89838cecf614",
+    "key": "PROJECT_MANAGER",
+    "value": "Quản lý dự án",
+    "desc": "Quản lý dự án",
+    "prefix": "MINOR_CATEGORY"
+  },
+  {
+    "id": "315f68ea-3507-4b9c-afcb-8955076dc558",
+    "key": "type1",
+    "value": "Nghề nghiệp loại 1",
+    "desc": "Nghề nghiệp loại 1",
+    "prefix": "JOBS_TYPE"
+  },
+  {
+    "id": "21df89d7-ab04-4389-beeb-0a72d6f1e067",
+    "key": "type2",
+    "value": "Nghề nghiệp loại 2",
+    "desc": "Nghề nghiệp loại 2",
+    "prefix": "JOBS_TYPE"
+  },
+  {
+    "id": "e1cab0ae-2bca-49a1-b1c7-897d12c34130",
+    "key": "type3",
+    "value": "Nghề nghiệp loại 3",
+    "desc": "Nghề nghiệp loại 3",
+    "prefix": "JOBS_TYPE"
+  },
+  {
+    "id": "f655631b-f8a3-4cd0-850e-d46a18698d48",
+    "key": "type4",
+    "value": "Nghề nghiệp loại 4",
+    "desc": "Nghề nghiệp loại 4",
+    "prefix": "JOBS_TYPE"
+  }
+]

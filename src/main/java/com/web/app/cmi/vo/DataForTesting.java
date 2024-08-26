@@ -84,7 +84,10 @@ public class DataForTesting {
         Select minorCategory = new Select();
         minorCategory.setCode("DEVELOPER");
         minorCategory.setName("Lập trình viên");
-
+        Select BACHELOR = new Select();
+        minorCategory.setCode("BACHELOR");
+        minorCategory.setName("Đại học");
+        
         // Tạo đối tượng Customer và thiết lập các thuộc tính
         Customer customer = new Customer();
         customer.setId("2453494545");
@@ -115,6 +118,7 @@ public class DataForTesting {
         customer.setPostalCode("700000");
         customer.setCompanyPhone("02812345678");
         customer.setBranchNumber("123");
+        customer.setEducation(BACHELOR);
         // Tạo danh sách các người phụ thuộc
         List<Customer> dependents = new ArrayList<>();
 

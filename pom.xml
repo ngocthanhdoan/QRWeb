@@ -164,16 +164,6 @@
 			<artifactId>jai-imageio-core</artifactId>
 			<version>1.4.0</version>
 		</dependency>
-
-		<dependency>
-			<groupId>com.groupdocs</groupId>
-			<artifactId>groupdocs-parser</artifactId>
-			   <version>23.11</version> 
-			<scope>system</scope>
-			<systemPath>
-				${project.basedir}/lib/groupdocs-parser-23.11.jar
-			</systemPath>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.pdfbox</groupId>
 			<artifactId>pdfbox</artifactId>

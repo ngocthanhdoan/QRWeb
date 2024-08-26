@@ -30,7 +30,7 @@ public class DataService {
 
     public Optional<DataSnapPayLoad> getDataById(String id) throws IOException {
         List<DataSnapPayLoad> dataList = getAllData();
-        return dataList.stream().filter(data -> data.getId().equals(id)).findFirst();
+        return dataList.stream().filter(data -> data.getId().equals(id)).findFirst(); 
     }
 
     public List<DataSnapPayLoad> getDataByPrefix(String prefix) throws IOException {
