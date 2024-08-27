@@ -76,47 +76,48 @@ public class DataSnapPayLoad {
 
             // Add new options for Selects
             // Document Types
-            dataList.add(createDataSnapPayLoad("Chứng minh nhân dân", "ID_CARD", "Chứng minh nhân dân", "DOCUMENT_TYPE"));
-            dataList.add(createDataSnapPayLoad("Hộ chiếu", "PASSPORT", "Hộ chiếu", "DOCUMENT_TYPE"));
-
-            // Genders
-            dataList.add(createDataSnapPayLoad("Nam", "MALE", "Nam", "GENDER"));
-            dataList.add(createDataSnapPayLoad("Nữ", "FEMALE", "Nữ", "GENDER"));
-
-            // Nationalities
-            dataList.add(createDataSnapPayLoad("Việt Nam", "VN", "Việt Nam", "NATIONALITY"));
-            dataList.add(createDataSnapPayLoad("Mỹ", "US", "Mỹ", "NATIONALITY"));
-
-            // Education Levels
-            dataList.add(createDataSnapPayLoad("Cấp 3", "HIGH_SCHOOL", "Cấp 3", "EDUCATION"));
-            dataList.add(createDataSnapPayLoad("Đại học", "BACHELOR", "Đại học", "EDUCATION"));
-            dataList.add(createDataSnapPayLoad("Thạc sĩ", "MASTER", "Thạc sĩ", "EDUCATION"));
-            dataList.add(createDataSnapPayLoad("Tiến sĩ", "PHD", "Tiến sĩ", "EDUCATION"));
-
-            // Marital Status
-            dataList.add(createDataSnapPayLoad("Độc thân", "SINGLE", "Độc thân", "MARITAL_STATUS"));
-            dataList.add(createDataSnapPayLoad("Kết hôn", "MARRIED", "Kết hôn", "MARITAL_STATUS"));
-
-            // Professions
-            dataList.add(createDataSnapPayLoad("Kỹ sư", "ENGINEER", "Kỹ sư", "PROFESSION"));
-            dataList.add(createDataSnapPayLoad("Bác sĩ", "DOCTOR", "Bác sĩ", "PROFESSION"));
-
-            // Major Categories
-            dataList.add(createDataSnapPayLoad("Công nghệ thông tin", "IT", "Công nghệ thông tin", "MAJOR_CATEGORY"));
-            dataList.add(createDataSnapPayLoad("Kinh tế", "ECONOMICS", "Kinh tế", "MAJOR_CATEGORY"));
-
-            // Medium Categories
-            dataList.add(createDataSnapPayLoad("Phần mềm", "SOFTWARE", "Phần mềm", "MEDIUM_CATEGORY"));
-            dataList.add(createDataSnapPayLoad("Phần cứng", "HARDWARE", "Phần cứng", "MEDIUM_CATEGORY"));
-
-            // Minor Categories
-            dataList.add(createDataSnapPayLoad("Lập trình viên", "DEVELOPER", "Lập trình viên", "MINOR_CATEGORY"));
-            dataList.add(createDataSnapPayLoad("Quản lý dự án", "PROJECT_MANAGER", "Quản lý dự án", "MINOR_CATEGORY"));
+//            dataList.add(createDataSnapPayLoad("Chứng minh nhân dân", "ID_CARD", "Chứng minh nhân dân", "DOCUMENT_TYPE"));
+//            dataList.add(createDataSnapPayLoad("Hộ chiếu", "PASSPORT", "Hộ chiếu", "DOCUMENT_TYPE"));
+//
+//            // Genders
+//            dataList.add(createDataSnapPayLoad("Nam", "MALE", "Nam", "GENDER"));
+//            dataList.add(createDataSnapPayLoad("Nữ", "FEMALE", "Nữ", "GENDER"));
+//
+//            // Nationalities
+//            dataList.add(createDataSnapPayLoad("Việt Nam", "VN", "Việt Nam", "NATIONALITY"));
+//            dataList.add(createDataSnapPayLoad("Mỹ", "US", "Mỹ", "NATIONALITY"));
+//
+//            // Education Levels
+//            dataList.add(createDataSnapPayLoad("Cấp 3", "HIGH_SCHOOL", "Cấp 3", "EDUCATION"));
+//            dataList.add(createDataSnapPayLoad("Đại học", "BACHELOR", "Đại học", "EDUCATION"));
+//            dataList.add(createDataSnapPayLoad("Thạc sĩ", "MASTER", "Thạc sĩ", "EDUCATION"));
+//            dataList.add(createDataSnapPayLoad("Tiến sĩ", "PHD", "Tiến sĩ", "EDUCATION"));
+//
+//            // Marital Status
+//            dataList.add(createDataSnapPayLoad("Độc thân", "SINGLE", "Độc thân", "MARITAL_STATUS"));
+//            dataList.add(createDataSnapPayLoad("Kết hôn", "MARRIED", "Kết hôn", "MARITAL_STATUS"));
+//
+//            // Professions
+//            dataList.add(createDataSnapPayLoad("Kỹ sư", "ENGINEER", "Kỹ sư", "PROFESSION"));
+//            dataList.add(createDataSnapPayLoad("Bác sĩ", "DOCTOR", "Bác sĩ", "PROFESSION"));
+//
+//            // Major Categories
+//            dataList.add(createDataSnapPayLoad("Công nghệ thông tin", "IT", "Công nghệ thông tin", "MAJOR_CATEGORY"));
+//            dataList.add(createDataSnapPayLoad("Kinh tế", "ECONOMICS", "Kinh tế", "MAJOR_CATEGORY"));
+//
+//            // Medium Categories
+//            dataList.add(createDataSnapPayLoad("Phần mềm", "SOFTWARE", "Phần mềm", "MEDIUM_CATEGORY"));
+//            dataList.add(createDataSnapPayLoad("Phần cứng", "HARDWARE", "Phần cứng", "MEDIUM_CATEGORY"));
+//
+//            // Minor Categories
+//            dataList.add(createDataSnapPayLoad("Lập trình viên", "DEVELOPER", "Lập trình viên", "MINOR_CATEGORY"));
+//            dataList.add(createDataSnapPayLoad("Quản lý dự án", "PROJECT_MANAGER", "Quản lý dự án", "MINOR_CATEGORY"));
             
-            dataList.add(createDataSnapPayLoad("Nghề nghiệp loại 1", "type1", "Nghề nghiệp loại 1", "JOBS_TYPE"));
-            dataList.add(createDataSnapPayLoad("Nghề nghiệp loại 2", "type2", "Nghề nghiệp loại 2", "JOBS_TYPE"));
-            dataList.add(createDataSnapPayLoad("Nghề nghiệp loại 3", "type3", "Nghề nghiệp loại 3", "JOBS_TYPE"));
-            dataList.add(createDataSnapPayLoad("Nghề nghiệp loại 4", "type4", "Nghề nghiệp loại 4", "JOBS_TYPE"));
+            dataList.add(createDataSnapPayLoad("Vợ", "FOR_MALE", "Vợ", "RELATIONSHIP"));
+            dataList.add(createDataSnapPayLoad("Chồng", "FOR_FEMALE", "Chồng", "RELATIONSHIP"));
+            dataList.add(createDataSnapPayLoad("Con", "CHILD", "Con", "RELATIONSHIP"));
+          //  dataList.add(createDataSnapPayLoad("Nghề nghiệp loại 3", "type3", "Nghề nghiệp loại 3", "JOBS_TYPE"));
+           // dataList.add(createDataSnapPayLoad("Nghề nghiệp loại 4", "type4", "Nghề nghiệp loại 4", "JOBS_TYPE"));
 
             // Write the updated list back to the file
             obj.writeValue(file, dataList);

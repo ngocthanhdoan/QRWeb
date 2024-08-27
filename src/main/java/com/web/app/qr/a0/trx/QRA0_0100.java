@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.manager.web.app.analyzer.MetricsAnalyzer;
 import com.manager.web.app.plugins.returnObject;
+import com.web.app.orc.a0.modun.ORCA0_0100_mod;
 import com.web.app.plugins.IdentityCardManager;
 import com.web.app.qr.a0.modun.QRA0_0100_mod;
 import com.web.app.qr.a0.vo.IdentityCard;
@@ -227,6 +228,21 @@ public class QRA0_0100 {
     }
 
     private returnObject responseObject;
+
+    @PostMapping("/process-image")
+    @ResponseBody
+    public String TEXT(@RequestParam("file") MultipartFile file) {
+        JSONObject response = new JSONObject();
+        long startTime = System.currentTimeMillis();
+        try {
+            BufferedImage image = ImageIO.read(file.getInputStream());
+            ORCA0_0100_mod mod = new ORCA0_0100_mod();
+            return mod.OCR_Form_Image(image);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return null;
+    }
 
     @GetMapping("/logs")
     @ResponseBody

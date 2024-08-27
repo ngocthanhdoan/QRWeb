@@ -35,14 +35,17 @@ public class DataForTestService {
     }
 
     public List<DataForTesting> getAllData() {
+        init();
         return data;
     }
 
     public DataForTesting getDataById(String id) {
+        init();
         return data.stream().filter(d -> d.getId().equals(id)).findFirst().orElse(null);
     }
 
     public boolean updateBuyer(String id, Customer updatedBuyer) {
+        init();
         DataForTesting entry = getDataById(id);
         if (entry != null) {
             entry.setBuyer(updatedBuyer);
@@ -52,6 +55,7 @@ public class DataForTestService {
     }
 
     public boolean updateInsured(String id, Customer updatedInsured) {
+        
         DataForTesting entry = getDataById(id);
         if (entry != null) {
             entry.setInsured(updatedInsured);
@@ -61,6 +65,7 @@ public class DataForTestService {
     }
 
     public boolean updateDependents(String id, List<Customer> updatedDependents) {
+  
         DataForTesting entry = getDataById(id);
         if (entry != null) {
             entry.setDependents(updatedDependents);
@@ -74,6 +79,7 @@ public class DataForTestService {
         try {
             byte[] jsonData = mapper.writeValueAsBytes(data);
             Files.write(Paths.get(DATA_FILE_PATH), jsonData, StandardOpenOption.TRUNCATE_EXISTING);
+            init();
             return true;
         } catch (Exception e) {
             // Handle the exception, e.g., logging

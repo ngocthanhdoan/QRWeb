@@ -57,6 +57,18 @@ public class Customer {
 
     private String branchNumber; // Số máy nhánh (branchNumber)
 
+    private Select relationShip;// Mối quan hệ (Loại đối tượng)
+
+   
+
+    public Select getRelationShip() {
+        return relationShip;
+    }
+
+    public void setRelationShip(Select relationShip) {
+        this.relationShip = relationShip;
+    }
+
     public String getId() {
         return id;
     }
