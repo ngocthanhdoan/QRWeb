@@ -8,6 +8,8 @@ RUN mvn clean install
 
 # Stage 2: Package
 FROM eclipse-temurin:21
+RUN apt-get update && apt-get install -y tesseract-ocr \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY  --from=build /app/target/QRWeb-0.0.1.jar qr-web-app.jar
 EXPOSE 8080
