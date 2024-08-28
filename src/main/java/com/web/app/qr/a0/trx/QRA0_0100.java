@@ -244,6 +244,27 @@ public class QRA0_0100 {
         return null;
     }
 
+    @PostMapping("/check-font")
+    @ResponseBody
+    public String checkFont(@RequestParam("file") MultipartFile file) {
+        JSONObject response = new JSONObject();
+        long startTime = System.currentTimeMillis();
+        try {
+            BufferedImage image = ImageIO.read(file.getInputStream());
+            ORCA0_0100_mod mod = new ORCA0_0100_mod();
+            QRA0_0100_mod mod2 = new QRA0_0100_mod();
+            if (mod.isFont(image) || mod2.countQrCodes(image) > 0) {
+                response.put("isFont", true);
+            } else {
+                response.put("isFont", false);
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return response.toString();
+    }
+
     @GetMapping("/logs")
     @ResponseBody
     public returnObject getSummary() {

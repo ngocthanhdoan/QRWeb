@@ -30,7 +30,9 @@ import georegression.struct.point.Point2D_I32;
 
 public class QRA0_0100_mod {
     private static final Logger log = Logger.getLogger(QRA0_0100_mod.class);
+
     private UUID uid;
+
     private IdentityCardManager cardManager = new IdentityCardManager();
 
     public String detectQrCode(BufferedImage input) {
@@ -80,11 +82,10 @@ public class QRA0_0100_mod {
             result.put("detections", jsonDetections);
         } else {
             result.put("status", "failure");
-            result.put("message", "["+uid.randomUUID()+"]: No QR codes detected");
-            if(failures.size()>0) {
-                result.put("message","["+uid.randomUUID()+"]: QR codes detected but decoding failed");
+            result.put("message", "[" + uid.randomUUID() + "]: No QR codes detected");
+            if (failures.size() > 0) {
+                result.put("message", "[" + uid.randomUUID() + "]: QR codes detected but decoding failed");
             }
-            
 
             if (failures.size() > 0) {
                 List<QrCode> detections_1 = tryWithFlailures(failures, input, config);
@@ -145,7 +146,7 @@ public class QRA0_0100_mod {
             retryDetector.process(grayFailure);
 
             // Kiểm tra kết quả phát hiện lại
-            
+
             List<QrCode> retryDetections = retryDetector.getDetections();
             if (failureRegion != null) {
                 saveImage(failureRegion, "images/failure_region_" + System.currentTimeMillis() + ".png");
@@ -155,7 +156,7 @@ public class QRA0_0100_mod {
             } else {
                 return new ArrayList<QrCode>();
             }
-            
+
         }
         return null;
     }
@@ -243,5 +244,14 @@ public class QRA0_0100_mod {
         } catch (IOException e) {
             System.err.println("Error saving image: " + e.getMessage());
         }
+    }
+
+    public int countQrCodes(BufferedImage input) {
+        ConfigQrCode config = new ConfigQrCode();
+        GrayU8 gray = ConvertBufferedImage.convertFrom(input, (GrayU8) null);
+        QrCodeDetector<GrayU8> detector = FactoryFiducial.qrcode(config, GrayU8.class);
+        detector.process(gray);
+        List<QrCode> detections = detector.getDetections();
+        return detections.size();
     }
 }

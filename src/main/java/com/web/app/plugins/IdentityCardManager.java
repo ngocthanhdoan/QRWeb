@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 import com.web.app.qr.a0.vo.IdentityCard;
 
 public class IdentityCardManager {
-	private static Map<String, IdentityCard> cardDatabase = new HashMap<>();
+	private Map<String, IdentityCard> cardDatabase = new HashMap<>();
 
 	public IdentityCard getCard(String idPassport) {
 		return cardDatabase.get(idPassport);
