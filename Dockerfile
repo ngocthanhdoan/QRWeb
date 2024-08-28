@@ -12,5 +12,9 @@ RUN apt-get update && apt-get install -y tesseract-ocr \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY  --from=build /app/target/QRWeb-0.0.1.jar qr-web-app.jar
+
+# Copy the resources directory to keep the structure
+COPY src/main/resources /app/src/main/resources
+
 EXPOSE 8080
 CMD ["java", "-jar", "qr-web-app.jar"]
